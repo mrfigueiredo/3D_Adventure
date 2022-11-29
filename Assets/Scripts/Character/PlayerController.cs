@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : Singleton<CharacterController>
+public class PlayerController : Singleton<PlayerController>
 {
     public enum CharacterStates
     {
