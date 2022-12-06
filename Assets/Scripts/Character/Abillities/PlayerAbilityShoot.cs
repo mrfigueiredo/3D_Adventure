@@ -8,37 +8,34 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     public List<GunBase> gunBases;
     public Transform gunPosition;
 
-    private GunBase _selectedGun;
+    private List<GunBase> _gunsAvailable;
     private GunBase _currentGun;
 
     protected override void Init()
     {
         base.Init();
 
-        _selectedGun = gunBases[0];
+        CreateGuns();
 
-        CreateGun();
+        EquipGun(0);
 
         inputs.Gameplay.Shoot.performed += cts => StartShoot();
         inputs.Gameplay.Shoot.canceled += cts => CancelShoot();
 
-        inputs.Gameplay.EquipItem1.performed += cts => EquipGun1();
+        inputs.Gameplay.EquipItem1.performed += cts => EquipGun(0);
         inputs.Gameplay.EquipItem1.canceled += cts => Unequip();
 
-        inputs.Gameplay.EquipItem2.performed += cts => EquipGun2();
+        inputs.Gameplay.EquipItem2.performed += cts => EquipGun(1);
         inputs.Gameplay.EquipItem2.canceled += cts => Unequip();
     }
 
-    private void EquipGun1()
+    private void EquipGun(int index)
     {
-        _selectedGun = gunBases[0];
-        CreateGun();
-    }
+        if (_currentGun != null)
+            _currentGun.gameObject.SetActive(false);
 
-    private void EquipGun2()
-    {
-        _selectedGun = gunBases[1];
-        CreateGun();
+        _currentGun = _gunsAvailable[index];
+        _currentGun.gameObject.SetActive(true);
     }
 
     private void Unequip()
@@ -46,12 +43,18 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 
     }
 
-    private void CreateGun()
+    private void CreateGuns()
     {
-        if (_currentGun != null)
-            Destroy(_currentGun);
-        _currentGun = Instantiate(_selectedGun, gunPosition);
-        _currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
+        _gunsAvailable = new List<GunBase>();
+
+        foreach (var gun in gunBases)
+        {
+            var _gun = Instantiate(gun, gunPosition);
+            _gun.transform.localPosition = _gun.transform.localEulerAngles = Vector3.zero;
+            _gun.gameObject.SetActive(false);
+
+            _gunsAvailable.Add(_gun);
+        }
     }
 
     private void StartShoot()

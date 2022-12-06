@@ -19,6 +19,12 @@ public class GunShootLimit : GunBase
         _currentShoots = clipSize;
     }
 
+    private void OnEnable()
+    {
+        UpdateUI();
+        CheckReload();
+    }
+
     private void Awake()
     {
         GetAllUIs();
