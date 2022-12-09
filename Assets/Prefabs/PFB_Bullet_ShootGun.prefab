@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1096249549851305427}
   - component: {fileID: 2478978995151538174}
   - component: {fileID: 2213318110719597952}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,11 +4874,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096249550695251756}
-  - component: {fileID: 1096249550695251757}
   - component: {fileID: 9173798526728145511}
-  m_Layer: 0
+  - component: {fileID: 6665751076551250545}
+  - component: {fileID: 1930534545102131468}
+  m_Layer: 6
   m_Name: PFB_Bullet_ShootGun
-  m_TagString: Untagged
+  m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4901,22 +4902,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1096249550695251757
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096249550695251759}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.96, y: 1.22}
-  m_Direction: 1
 --- !u!114 &9173798526728145511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4930,12 +4915,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 1
-  damageAmount: 20
+  damageAmount: 50
   bulletSpeed: 50
   bullet: {fileID: 1096249549851305437}
   shootVFX: {fileID: 0}
   hitVFX: {fileID: 0}
   source: {fileID: 0}
+--- !u!135 &6665751076551250545
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096249550695251759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1930534545102131468
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096249550695251759}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1913369787188217674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,7 +4961,7 @@ GameObject:
   - component: {fileID: 2624682986572549742}
   - component: {fileID: 9058105736943808708}
   - component: {fileID: 3664214182754732821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VFX_Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9808,7 +9822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8464961467528370608}
   - component: {fileID: 5460179533384775699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Audiosource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9936,7 +9950,7 @@ GameObject:
   - component: {fileID: 7470713883395744289}
   - component: {fileID: 7227681746258098024}
   - component: {fileID: 1935321898360860046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VFX_Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

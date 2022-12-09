@@ -36,11 +36,11 @@ public class ProjectileBase : MonoBehaviour
         if (other.gameObject.CompareTag(playerTag))
             return;
 
-        /*var enemy = other.transform.GetComponent<EnemyBase>();
+        var damageable = other.transform.GetComponent<IDamageable>();
 
-        if (enemy != null)
+        if (damageable != null)
         {
-            enemy.Damage(damageAmount);
+            damageable.Damage(damageAmount);
             if (hitVFX != null)
             {
                 hitVFX.Play();
@@ -55,7 +55,7 @@ public class ProjectileBase : MonoBehaviour
         else
         {
             OnHitDestroy();
-        }*/
+        }
     }
 
     private void OnHitDestroy(float timeToDestroy = 0)
