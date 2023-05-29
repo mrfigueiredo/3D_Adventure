@@ -24,14 +24,14 @@ public class StateMachine<T> where T : System.Enum
         dictioneryState.Add(typeEnum, state);
     }
 
-    public void SwitchState(T state)
+    public void SwitchState(T state, params object[] objs)
     {
         if (_currentState != null)
             _currentState.OnStateExit();
 
         _currentState = dictioneryState[state];
 
-        _currentState.OnStateEnter();
+        _currentState.OnStateEnter(objs);
     }
 
     private void Update()

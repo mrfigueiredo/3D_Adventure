@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateBase
 {
-    public virtual void OnStateEnter(object n = null)
+    public virtual void OnStateEnter(params object[] objs)
     {
 
     }
@@ -19,3 +19,4 @@ public class StateBase
 
     }
 }
+

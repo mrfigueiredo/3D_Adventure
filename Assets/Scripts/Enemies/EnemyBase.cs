@@ -4,9 +4,9 @@ using UnityEngine;
 using Animation;
 using DG.Tweening;
 
-public class EnemyBase : MonoBehaviour, IDamageable
+public class EnemyBase : HealthBase, IDamageable
 {
-    public float startLife = 10f;
+    public float damage = 50f;
     public Collider collider;
     public FlashColor flashColor;
     public ParticleSystem damageVFX;        
@@ -19,34 +19,23 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public float timeToDestroyOnKill = 1f;
 
     [SerializeField] private AnimationBase _animationBase;
-    private float _currentLife;
 
-    private void Awake()
+    protected override void Awake()
     {
         Init();
     }
 
-    protected virtual void Init()
+    protected override void Init()
     {
-        ResetLife();
+        base.Init();
+        base.OnDamage += OnDamageCB;
+        base.OnKill += OnKillCB;
         if (spawnWithAnimation)
             spawnAnimation();
     }
-
-    private void ResetLife()
+    public void OnDamageCB(HealthBase healthBase)
     {
-        _currentLife = startLife;
-    }
-
-    public void OnDamage(float damage)
-    {
-        _currentLife -= damage;
-
-        if (_currentLife <= 0)
-        {
-            Kill();
-        }
-
+ 
         if (flashColor != null)
             flashColor.Flash();
 
@@ -54,14 +43,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
             damageVFX.Play();
     }
 
-    protected virtual void Kill()
+    protected virtual void OnKillCB(HealthBase healthBase)
     {
         PlayAnimationByTrigger(AnimationType.DEATH);
-        OnKill();
-    }
-
-    protected virtual void OnKill()
-    {
         collider.enabled = false;
         if (hasDeathAnimation)
             Destroy(gameObject, timeToDestroyOnKill);
@@ -69,10 +53,15 @@ public class EnemyBase : MonoBehaviour, IDamageable
             Destroy(gameObject);
     }
 
-    public void Damage(float damage)
+    private void OnCollisionEnter(Collision collision)
     {
-        OnDamage(damage);
+        PlayerBase player = collision.transform.GetComponent<PlayerBase>();
+        if(player != null)
+        {
+            player.Damage(damage);
+        }
     }
+
 
     #region ANIMATIONS
     private void PlayAnimationByTrigger(AnimationType animationType)

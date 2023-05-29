@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    [Header("Movement")]
     public Animator animator;
     public CharacterController characterController;
     public KeyCode runningKey = KeyCode.LeftShift;
@@ -14,7 +15,6 @@ public class MovementController : MonoBehaviour
     public float jumpSpeed = 25f;
     public float gravity = 9.8f;
 
-    private bool _isRunning = false;
     private bool _isWalking = false;
     private float _verticalSpeed = 0f;
     private float _verticalInput;
