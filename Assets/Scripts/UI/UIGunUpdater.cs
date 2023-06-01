@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class UIUpdater : MonoBehaviour
+public class UIGunUpdater : MonoBehaviour
 {
     public Image uiImage;
 

@@ -31,6 +31,7 @@ public class PlayerBase : HealthBase
     public void DamagePlayer(HealthBase health)
     {
         flashColor.ForEach( i => i.Flash());
+        uiUpdater.UpdateValue(_currentLife);
     }
 
     private void OnKillPlayer(HealthBase health)
