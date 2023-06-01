@@ -24,6 +24,12 @@ public class EnemyShooter : EnemyBase
         _isShooting = false;
     }
 
+    protected override void OnKillCB(HealthBase healthBase)
+    {
+        base.OnKillCB(healthBase);
+        gunBase.CancelShoot();
+    }
+
     protected void Update()
     {
         if(Vector3.Distance(_player.transform.position, this.transform.position) < distanceToShoot && !_isShooting)

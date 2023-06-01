@@ -16,7 +16,7 @@ namespace Boss
     }
 
 
-    public class BossBase : HealthBase, IDamageable
+    public class BossBase : HealthBase
     {
         private StateMachine<BossActions> _stateMachine;
 

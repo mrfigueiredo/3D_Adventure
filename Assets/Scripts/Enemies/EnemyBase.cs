@@ -4,7 +4,7 @@ using UnityEngine;
 using Animation;
 using DG.Tweening;
 
-public class EnemyBase : HealthBase, IDamageable
+public class EnemyBase : HealthBase
 {
     public float damage = 50f;
     public Collider collider;

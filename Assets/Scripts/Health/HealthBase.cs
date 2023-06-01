@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class HealthBase : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamageable
 {
     public float startLife = 100f;
     public bool destroyOnKill = false;
-    [SerializeField] private float _currentLife;
+    public float _currentLife;
 
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
