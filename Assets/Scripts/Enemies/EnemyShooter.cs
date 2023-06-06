@@ -15,6 +15,7 @@ public class EnemyShooter : EnemyBase
     {
         base.Init();
         _player = GameObject.FindObjectOfType<PlayerBase>();
+        gunBase.SetPlayer(_player);
 
     }
 

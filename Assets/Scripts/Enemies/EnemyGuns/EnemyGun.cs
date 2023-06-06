@@ -9,22 +9,29 @@ public class EnemyGun : MonoBehaviour
     public float timeBetweenShoots = .5f;
 
     private Coroutine _currentShooting;
+    private PlayerBase _player;
+
+    public virtual void SetPlayer(PlayerBase player)
+    {
+        _player = player;
+    }
 
     protected virtual IEnumerator ShootAction()
     {
         while (true)
         {
-            Shoot();
+            Shoot(_player.transform.position);
 
             yield return new WaitForSeconds(timeBetweenShoots);
         }
     }
 
-    public virtual void Shoot()
+    public virtual void Shoot(Vector3 Target)
     {
         var projectile = Instantiate(projectileBase);
         projectile.transform.position = shootPosition.position;
         projectile.transform.rotation = shootPosition.rotation;
+        projectile.SetTarget(Target);
     }
 
     public virtual void ShootAtTarget(Vector3 Target)

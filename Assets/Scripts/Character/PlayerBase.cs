@@ -32,6 +32,8 @@ public class PlayerBase : HealthBase
     {
         flashColor.ForEach( i => i.Flash());
         uiUpdater.UpdateValue(_currentLife);
+        PPManager.Instance.VignetteOnHit();
+        ScreenShaker.Instance.Shake();
     }
 
     private void OnKillPlayer(HealthBase health)
