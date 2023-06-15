@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : HealthBase 
+public class PlayerBase : HealthBase
 {
         
     [Header("FlashDamage")]
@@ -62,5 +62,11 @@ public class PlayerBase : HealthBase
     private void EnableColliders()
     {
         colliders.ForEach(i => i.enabled = true);
+    }
+
+    public void Heal()
+    {
+        ResetLife();
+        uiUpdater.UpdateValue(_currentLife);
     }
 }
