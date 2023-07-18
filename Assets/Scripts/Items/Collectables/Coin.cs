@@ -7,14 +7,16 @@ using Inventory;
 public class Coin : CollectableBase
 {
     [Header("Animation")]
+    public bool animationPlay = true;
     public float idleAnimationLoopTime = 0.5f;
-    public Ease idleAnimatonEase = Ease.OutBack;
+    public Ease idleAnimationEase = Ease.OutBack;
 
     private bool _collected = false;
 
     private void Awake()
     {
-        IdleAnimation();
+        if(animationPlay)
+            IdleAnimation();
     }
 
     protected override void OnCollect()
@@ -36,6 +38,6 @@ public class Coin : CollectableBase
 
     private void IdleAnimation()
     {
-        transform.DORotate(new Vector3(0, 360, 0), idleAnimationLoopTime, RotateMode.LocalAxisAdd).SetEase(idleAnimatonEase).SetLoops(-1, LoopType.Incremental);
+        transform.DORotate(new Vector3(0, 360, 0), idleAnimationLoopTime, RotateMode.LocalAxisAdd).SetEase(idleAnimationEase).SetLoops(-1, LoopType.Incremental);
     }
 }

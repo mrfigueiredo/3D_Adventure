@@ -8,7 +8,7 @@ public class PlayerBase : HealthBase
     [Header("FlashDamage")]
     public List<FlashColor> flashColor;
 
-    [Header("Animaition")]
+    [Header("Animation")]
     public Animator animator;
     public string DeathTrigger = "Death";
     private bool _isAlive = true;
