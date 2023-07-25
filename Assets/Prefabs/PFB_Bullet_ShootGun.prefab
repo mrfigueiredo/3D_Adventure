@@ -4915,7 +4915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 1
-  damageAmount: 50
+  damageAmount: 20
   bulletSpeed: 50
   bullet: {fileID: 1096249549851305437}
   shootVFX: {fileID: 0}

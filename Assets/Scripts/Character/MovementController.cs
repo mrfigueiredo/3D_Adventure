@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour
+public class MovementController : Singleton<MovementController>
 {
     [Header("Movement")]
     public Animator animator;
@@ -18,12 +18,12 @@ public class MovementController : MonoBehaviour
     private bool _isWalking = false;
     private float _verticalSpeed = 0f;
     private float _verticalInput;
+    private float _baseSpeed;
     private Vector3 _moveInput;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        _baseSpeed = speed;
     }
 
     // Update is called once per frame
@@ -59,5 +59,21 @@ public class MovementController : MonoBehaviour
 
         animator.SetBool("Run", _isWalking);
 
+    }
+    public float GetBaseSpeed()
+    {
+        return _baseSpeed;
+    }
+
+    public void ChangeSpeed(float newSpeed, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(newSpeed, duration));
+    }
+
+    private IEnumerator ChangeSpeedCoroutine(float newSpeed, float duration)
+    {
+        speed = newSpeed;
+        yield return new WaitForSeconds(duration);
+        speed = _baseSpeed;
     }
 }

@@ -69,4 +69,5 @@ public class PlayerBase : HealthBase
         ResetLife();
         uiUpdater.UpdateValue(_currentLife);
     }
+
 }
